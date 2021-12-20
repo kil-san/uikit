@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && rollup -c && tsc -d --emitDeclarationOnly --declarationDir dist",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "release": "yarn build && np"
