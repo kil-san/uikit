@@ -2,7 +2,7 @@
   "name": "@kil-san/uikit",
   "version": "0.1.2",
   "private": true,
-  "repository": "https://https://github.com/kil-san/uikit",
+  "repository": "https://github.com/kil-san/uikit",
   "license": "MIT",
   "peerDependencies": {
     "react": "^17.0.2",
