@@ -3,6 +3,8 @@
   "version": "0.1.5",
   "repository": "https://github.com/kil-san/uikit",
   "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
