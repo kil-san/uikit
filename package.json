@@ -3,6 +3,9 @@
   "version": "0.1.4",
   "repository": "https://github.com/kil-san/uikit",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
