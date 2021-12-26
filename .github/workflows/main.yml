@@ -1,0 +1,50 @@
+name: Build
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.GITHUB_HEAD_REF_SLUG }}
+      
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14.x
+      
+    
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env: 
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Run Jest tests
+        run: yarn test 
+        env: 
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Run Build
+        run: yarn build
+        env: 
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Release Beta
+        run: yarn pre-release
+        env: 
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          BRANCH: ${{ env.GITHUB_HEAD_REF_SLUG }}
+          VERSION: ${{ env.NEXT_VERSION }}
