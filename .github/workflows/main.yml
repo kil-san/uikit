@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
 
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
@@ -34,3 +37,4 @@ jobs:
         run: yarn pre-release
         env: 
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          BRANCH: ${{ env.GITHUB_HEAD_REF_SLUG }}
