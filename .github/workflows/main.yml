@@ -7,18 +7,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: 'master'
+          ref: ${{ env.GITHUB_HEAD_REF_SLUG }}
       
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      
-      - name: Inject slug/short variables
-        uses: rlespinasse/github-slug-action@v3.x
 
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
