@@ -43,7 +43,7 @@ jobs:
       - name: Get Package Version
         run: |
           CURRENT_VERSION=$(npm run version --silent)
-          NEXT_VERSION=npx semver $CURRENT_VERSION -i prerelease --preid beta
+          NEXT_VERSION=$(npx semver $CURRENT_VERSION -i prerelease --preid beta)
           echo "NEXT_VERSION=$(echo $NEXT_VERSION)" >> $GITHUB_ENV
       
       - name: Release Beta
