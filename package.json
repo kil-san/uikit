@@ -1,6 +1,6 @@
 {
   "name": "@kil-san/uikit",
-  "version": "0.1.7-0",
+  "version": "0.1.5",
   "repository": "https://github.com/kil-san/uikit",
   "license": "MIT",
   "module": "dist/index.js",
@@ -18,8 +18,9 @@
     "test": "jest --passWithNoTests",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "pre-release": "np prepatch --tag=beta --any-branch --branch=$BRANCH --no-release-draft",
-    "release": "np patch --no-release-draft --branch=master"
+    "pre-release": "echo $VERSION && np $VERSION --tag=beta --any-branch --branch=$BRANCH",
+    "release": "np patch --no-release-draft --branch=master",
+    "version": "echo $npm_package_version"
   },
   "eslintConfig": {
     "extends": [

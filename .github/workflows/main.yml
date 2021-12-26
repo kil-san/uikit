@@ -39,9 +39,16 @@ jobs:
         run: yarn build
         env: 
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+      - name: Get Package Version
+        run: |
+          CURRENT_VERSION=$(npm run version --silent)
+          NEXT_VERSION=npx semver $CURRENT_VERSION -i prerelease --preid beta
+          echo "NEXT_VERSION=$(echo $NEXT_VERSION)" >> $GITHUB_ENV
       
       - name: Release Beta
         run: yarn pre-release
         env: 
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
           BRANCH: ${{ env.GITHUB_HEAD_REF_SLUG }}
+          VERSION: ${{ env.NEXT_VERSION }}
