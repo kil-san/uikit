@@ -16,8 +16,8 @@
   "scripts": {
     "build": "rm -rf ./dist && rollup -c && tsc -d --emitDeclarationOnly --declarationDir dist",
     "test": "jest --passWithNoTests",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "release": "yarn build && np"
   },
   "eslintConfig": {
