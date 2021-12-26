@@ -10,6 +10,12 @@ jobs:
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
 
+      - name: Get Package Version
+        run: |
+          CURRENT_VERSION=$(npm run version --silent)
+          NEXT_VERSION=$(npx semver $CURRENT_VERSION -i prerelease --preid beta)
+          echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -39,12 +45,6 @@ jobs:
         run: yarn build
         env: 
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        
-      - name: Get Package Version
-        run: |
-          CURRENT_VERSION=$(npm run version --silent)
-          NEXT_VERSION=$(npx semver $CURRENT_VERSION -i prerelease --preid beta)
-          echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
       
       - name: Release Beta
         run: yarn pre-release
