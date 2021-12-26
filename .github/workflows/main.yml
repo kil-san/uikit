@@ -10,12 +10,6 @@ jobs:
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
 
-      - name: Get Package Version
-        run: |
-          CURRENT_VERSION=$(npm run version --silent)
-          NEXT_VERSION=$(npx semver $CURRENT_VERSION -i prerelease --preid beta)
-          
-
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -30,6 +24,10 @@ jobs:
         uses: actions/setup-node@v2.1.2
         with:
           node-version: 14.x
+      
+      - name: Get Package Version
+        run: |
+          CURRENT_VERSION=$(npm run version --silent)
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
