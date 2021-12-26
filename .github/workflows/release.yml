@@ -1,6 +1,8 @@
-name: Build
+name: Release
 
-on: pull_request
+on:
+  push:
+    branches: [ $default-branch ]
 
 jobs:
   build:
@@ -20,17 +22,12 @@ jobs:
         env: 
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Run Jest tests
-        run: yarn test 
-        env: 
-          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Run Build
         run: yarn build
         env: 
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
-      - name: Release Beta
-        run: yarn pre-release
+      - name: Release
+        run: yarn release
         env: 
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}

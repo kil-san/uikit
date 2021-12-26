@@ -18,7 +18,8 @@
     "test": "jest --passWithNoTests",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "release": "yarn build && np"
+    "pre-release": "np prepatch --tag=beta --any-branch --no-release-draft",
+    "release": "np patch --no-release-draft"
   },
   "eslintConfig": {
     "extends": [
