@@ -25,9 +25,7 @@ jobs:
         with:
           node-version: 14.x
       
-      - name: Get Package Version
-        run: |
-          CURRENT_VERSION=$(npm run version --silent)
+    
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
