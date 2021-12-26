@@ -44,7 +44,7 @@ jobs:
         run: |
           CURRENT_VERSION=$(npm run version --silent)
           NEXT_VERSION=$(npx semver $CURRENT_VERSION -i prerelease --preid beta)
-          echo "NEXT_VERSION=$(echo $NEXT_VERSION)" >> $GITHUB_ENV
+          echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
       
       - name: Release Beta
         run: yarn pre-release
